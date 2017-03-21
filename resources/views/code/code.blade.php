@@ -101,7 +101,7 @@
                                                     <p>What variables would you like to diplay on this sheet?</p>
                                                     <ul>
                                                         @foreach($variables[$loop->index] as $variable)
-                                                            <li><input type="checkbox" onclick="displayVar({{ $variable->id }})"> {{ $variable->name }}</li>
+                                                            <li><input type="checkbox" id="var{{ $variable->id }}" onclick="displayVar({{ $variable->id }})"> {{ $variable->name }}</li>
                                                         @endforeach
                                                     </ul>
                                                 </div>
@@ -117,6 +117,7 @@
                                     </div>
                                     <h3>Codes</h3>
                                     <div id="codeList{{ $loop->index }}"></div>
+                                    <button class="btn btn-primary btn-sm" onclick="move(0)">BACK</button>
                                     <button class="btn btn-primary btn-sm" onclick="move(1)">NEXT</button>
                                 </div>
                             </div>
@@ -345,7 +346,11 @@
     }
 
     function displayVar(id) {
-        console.log(id);
+        if(document.getElementById('var' + id).checked) {
+            console.log(view);
+        } else {
+            console.log(id);
+        }
     }
 
     function sheetSwitch(sheetId) {
